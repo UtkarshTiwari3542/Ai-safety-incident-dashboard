@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Safety Incident Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Safety Incident Dashboard</h1>
+      <p>Track, report, and analyze AI safety incidents across your organization</p>
+    </header>
+    
+    <div class="app-controls">
+      <div class="filter-sort-controls">
+        <div class="control-group">
+          <label for="severity-filter"><i class="fas fa-filter"></i> Filter:</label>
+          <select id="severity-filter">
+            <option value="All">All Severities</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="date-sort"><i class="fas fa-sort"></i> Sort:</label>
+          <select id="date-sort">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+      </div>
+      
+      <button id="toggle-form-btn" class="toggle-form-btn">
+        <i class="fas fa-plus"></i> Report New Incident
+      </button>
+    </div>
+    
+    <div id="form-container" class="form-container">
+      <h2><i class="fas fa-clipboard-list"></i> Report New Incident</h2>
+      <form id="new-incident-form">
+        <div class="form-group">
+          <label for="title">Incident Title:</label>
+          <input type="text" id="title" name="title" placeholder="Enter a descriptive title..." required>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="4" placeholder="Describe what happened, impact, and relevant details..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Severity Level:</label>
+          <div class="radio-group">
+            <label class="radio-option-Low">
+              <input type="radio" name="severity" value="Low">
+              <i class="fas fa-info-circle"></i> Low
+            </label>
+            <label class="radio-option-Medium">
+              <input type="radio" name="severity" value="Medium" checked>
+              <i class="fas fa-exclamation-circle"></i> Medium
+            </label>
+            <label class="radio-option-High">
+              <input type="radio" name="severity" value="High">
+              <i class="fas fa-exclamation-triangle"></i> High
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" id="cancel-form-btn" class="cancel-btn">Cancel</button>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Incident
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="incidents-container">
+      <div class="incidents-header">
+        <h2>Incident Reports</h2>
+        <span id="incidents-count" class="incidents-count">0 incidents</span>
+      </div>
+      
+      <ul id="incidents-list" class="incidents-list">
+        <!-- Incidents will be loaded here dynamically -->
+      </ul>
+      
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <i class="fas fa-clipboard-check"></i>
+        <h3>No incidents found</h3>
+        <p>There are no incidents matching your current filters, or no incidents have been reported yet.</p>
+        <button id="empty-state-btn" class="toggle-form-btn">
+          <i class="fas fa-plus"></i> Report New Incident
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="notification" class="notification">
+    <i class="fas fa-check-circle"></i>
+    <div class="notification-content">
+      <h4>Success!</h4>
+      <p>New incident has been reported successfully.</p>
+    </div>
+  </div>
+  
+  <script src="dist/main.js"></script>
+</body>
+</html>
